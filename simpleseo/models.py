@@ -3,7 +3,13 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
+class ContentSeoMetadata(models.Model):
+    content_id = models.PositiveIntegerField()
+    content_type = models.CharField(max_length=255)
+
+
 class SeoMetadata(models.Model):
+    content = models.ForeignKey(ContentSeoMetadata, null=True, blank=True)
     title = models.CharField(verbose_name=_('Title'), max_length=68)
     description = models.CharField(verbose_name=_('Description'), max_length=155)
     path = models.CharField(verbose_name=_('Path'), max_length=200, db_index=True,
