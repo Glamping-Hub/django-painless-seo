@@ -1,6 +1,12 @@
 from django.contrib import admin
+from django.contrib.contenttypes import generic
 
 from simpleseo.models import SeoMetadata
+
+
+class SeoMetadataInline(generic.GenericStackedInline):
+    model = SeoMetadata
+    extra = 1
 
 
 class SeoMetadataAdmin(admin.ModelAdmin):

@@ -3,7 +3,6 @@ from django.template import Library
 from simpleseo import settings
 from simpleseo.models import SeoMetadata
 
-
 register = Library()
 
 
