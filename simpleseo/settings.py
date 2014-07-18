@@ -9,3 +9,5 @@ if FALLBACK_TITLE is None:
 
 if FALLBACK_DESCRIPTION is None:
     raise ImproperlyConfigured('SEO_DEFAULT_DESCRIPTION is not defined in settings.')
+
+SEO_LANGUAGES = getattr(settings, 'LANGUAGES', None)

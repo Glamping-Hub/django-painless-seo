@@ -1,8 +1,9 @@
-from django.conf import settings
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+from simpleseo import settings
 
 
 class SeoMetadata(models.Model):
@@ -13,7 +14,7 @@ class SeoMetadata(models.Model):
     description = models.CharField(verbose_name=_('Description'), max_length=155)
     path = models.CharField(verbose_name=_('Path'), max_length=200, db_index=True,
                             help_text=_("This should be an absolute path, excluding the domain name. Example: '/foo/bar/'."))
-    lang_code = models.CharField(verbose_name=_('Language'), max_length=2, choices=settings.LANGUAGES)
+    lang_code = models.CharField(verbose_name=_('Language'), max_length=2, choices=settings.SEO_LANGUAGES)
 
     class Meta:
         verbose_name = _('SEO metadata')
