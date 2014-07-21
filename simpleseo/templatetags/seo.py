@@ -6,6 +6,11 @@ from simpleseo.models import SeoMetadata
 register = Library()
 
 
+@register.filter
+def single_quotes(description):
+    return description.replace('\"', '\'')
+
+
 @register.inclusion_tag('simpleseo/metadata.html', takes_context=True)
 def get_seo(context):
     request = context['request']

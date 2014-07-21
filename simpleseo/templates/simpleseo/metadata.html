@@ -1,2 +1,5 @@
+{% load seo %}
 <title>{{title}}</title>
-<meta name="description" content="{{description}}">
+{% with description|single_quotes as safer_description %}
+<meta name="description" content="{{safer_description|safe}}">
+{% endwith %}

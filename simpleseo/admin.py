@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.contenttypes import generic
 
-from simpleseo.models import SeoMetadata
+from simpleseo.models import SeoMetadata, register_seo_signals
 
 
 class SeoMetadataInline(generic.GenericStackedInline):
@@ -19,3 +19,4 @@ class SeoMetadataAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SeoMetadata, SeoMetadataAdmin)
+register_seo_signals()

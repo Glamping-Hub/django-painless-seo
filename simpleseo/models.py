@@ -1,5 +1,6 @@
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate, get_language
@@ -49,10 +50,10 @@ def delete_seo(sender, instance, **kwargs):
         sm.delete()
 
 
-def seo_signals():
+def register_seo_signals():
     for app, model in settings.SEO_MODELS:
         ctype = ContentType.objects.get(app_label=app, model=model)
-        models.signals.post_save.connect(update_seo, sender=ctype.model_class())
-        models.signals.pre_delete.connect(delete_seo, sender=ctype.model_class())
-
-seo_signals()
+        if not hasattr(ctype.model_class(), 'get_absolute_url'):
+            raise ImproperlyConfigured("Needed get_absolute_url method not defined on %s.%s model." % (app, model))
+        models.signals.post_save.connect(update_seo, sender=ctype.model_class(), weak=False)
+        models.signals.pre_delete.connect(delete_seo, sender=ctype.model_class(), weak=False)
