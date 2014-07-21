@@ -26,7 +26,7 @@ class SeoMetadata(models.Model):
         ordering = ('path', 'lang_code')
 
     def __unicode__(self):
-        return "%s | %s" % (self.lang_code, self.path)
+        return "Language: %s | URL: %s" % (self.lang_code, self.path)
 
 
 def update_seo(sender, instance, **kwargs):

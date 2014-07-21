@@ -6,16 +6,14 @@ from simpleseo.models import SeoMetadata, register_seo_signals
 
 class SeoMetadataInline(generic.GenericStackedInline):
     model = SeoMetadata
-    extra = 1
-    max_num = 1
+    extra = 0
+    max_num = 0
+    exclude = ('path', 'lang_code', )
 
 
 class SeoMetadataAdmin(admin.ModelAdmin):
     list_display = ('path', 'lang_code', )
-
-    def get_form(self, request, obj=None, **kwargs):
-        self.exclude = ['content_type', 'object_id', 'content_object', ]
-        return super(SeoMetadataAdmin, self).get_form(request, obj, **kwargs)
+    exclude = ('content_type', 'object_id', )
 
 
 admin.site.register(SeoMetadata, SeoMetadataAdmin)
