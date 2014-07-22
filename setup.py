@@ -8,7 +8,7 @@ setup(
     packages=['django-simple-seo', ],
     url='https://github.com/Glamping-Hub/django-simple-seo',
     license='LICENSE',
-    description='Simple SEO tool for django framework',
+    description='Simple SEO app for django framework',
     long_description=open('README.md').read(),
     requires=[
         'Django (>=1.5.0)',

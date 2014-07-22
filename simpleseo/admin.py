@@ -10,9 +10,14 @@ class SeoMetadataInline(generic.GenericStackedInline):
     max_num = 0
     exclude = ('path', 'lang_code', )
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 class SeoMetadataAdmin(admin.ModelAdmin):
     list_display = ('path', 'lang_code', )
+    search_fields = ['path', ]
+    list_filter = ('lang_code', )
     exclude = ('content_type', 'object_id', )
 
 
