@@ -1,3 +1,2 @@
 include README.md
-include painlessseo/**/*
 include painlessseo/templates/painlessseo/*html
