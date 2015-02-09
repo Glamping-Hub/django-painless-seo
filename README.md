@@ -1,5 +1,8 @@
 # Django PainlessSEO
 
+[![PyPI version](https://pypip.in/version/django-painless-seo/badge.svg?style=flat)](https://pypi.python.org/pypi/django-painless-seo)
+[![PyPI downloads](https://pypip.in/download/django-painless-seo/badge.svg?style=flat)](https://pypi.python.org/pypi/django-painless-seo)
+
 ## Features
 
 This app provides two ways of adding SEO metadata to your django site:
