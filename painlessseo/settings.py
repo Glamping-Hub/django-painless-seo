@@ -1,3 +1,6 @@
+# Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
+# License: BSD 3-Clause
+
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 

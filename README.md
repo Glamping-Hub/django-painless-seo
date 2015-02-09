@@ -1,4 +1,4 @@
-# Django SimpleSEO
+# Django PainlessSEO
 
 ## Features
 
@@ -18,15 +18,15 @@ It also includes support for multiple languages and localized URLs.
 
 The Git repository can be cloned with this command:
 
-    git clone https://github.com/Glamping-Hub/django-simple-seo.git
+    git clone https://github.com/Glamping-Hub/django-painless-seo.git
 
-The `simpleseo` package included in the distribution should be placed on the
-`PYTHONPATH`. Add `simpleseo` to the `INSTALLED_APPS` in your *settings.py*.
+The `painlessseo` package included in the distribution should be placed on the
+`PYTHONPATH`. Add `painlessseo` to the `INSTALLED_APPS` in your *settings.py*.
 Run `syncdb` command to create the needed tables.
 
 ## Settings
 
-SimpleSEO uses two configuration variables for defining the default information
+PainlessSEO uses two configuration variables for defining the default information
 that will be displayed if the URL has no SEO metadata related. You have to add
 them to your *settings.py*:
 
@@ -46,7 +46,7 @@ To create synced SEO metadata for model instances you have to define the
 After registering the models, you can add the inline form to the admin instance
 for each model:
 
-    from simpleseo.admin import SeoMetadataInline
+    from painlessseo.admin import SeoMetadataInline
 
     class MyModelAdmin(admin.ModelAdmin):
         inlines = [SeoMetadataInline, ]
@@ -67,4 +67,4 @@ template tag like this:
 
 ## Notes
 
-[Why SimpleSEO does not include keywords meta tag](http://googlewebmastercentral.blogspot.in/2009/09/google-does-not-use-keywords-meta-tag.html).
+[Why PainlessSEO does not include keywords meta tag](http://googlewebmastercentral.blogspot.in/2009/09/google-does-not-use-keywords-meta-tag.html).

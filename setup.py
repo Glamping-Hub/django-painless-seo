@@ -1,12 +1,15 @@
+# Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
+# License: BSD 3-Clause
+
 from setuptools import setup
 
 setup(
-    name='django-simple-seo',
+    name='django-painless-seo',
     version='0.0.1',
     author='Glamping Hub',
     author_email='it@glampinghub.com',
-    packages=['simpleseo'],
-    url='https://github.com/Glamping-Hub/django-simple-seo',
+    packages=['painlessseo'],
+    url='https://github.com/Glamping-Hub/django-painless-seo',
     license='BSD',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -19,7 +22,7 @@ setup(
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Internet'
     ],
-    description='Simple SEO app for Django framework',
+    description='Painless SEO app for Django framework',
     keywords='seo django',
     long_description=open('README.md').read(),
     requires=[

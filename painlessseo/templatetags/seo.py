@@ -1,9 +1,12 @@
+# Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
+# License: BSD 3-Clause
+
 from django.forms.models import model_to_dict
 from django.template import Library
 from django.utils.translation import get_language
 
-from simpleseo import settings
-from simpleseo.models import SeoMetadata
+from painlessseo import settings
+from painlessseo.models import SeoMetadata
 
 register = Library()
 
@@ -13,7 +16,7 @@ def single_quotes(description):
     return description.replace('\"', '\'')
 
 
-@register.inclusion_tag('simpleseo/metadata.html', takes_context=True)
+@register.inclusion_tag('painlessseo/metadata.html', takes_context=True)
 def get_seo(context, **kwargs):
     path = context['request'].path
     lang_code = get_language()[:2]

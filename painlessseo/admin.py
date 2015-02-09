@@ -1,7 +1,10 @@
+# Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
+# License: BSD 3-Clause
+
 from django.contrib import admin
 from django.contrib.contenttypes import generic
 
-from simpleseo.models import SeoMetadata, register_seo_signals
+from painlessseo.models import SeoMetadata, register_seo_signals
 
 
 class SeoMetadataInline(generic.GenericStackedInline):

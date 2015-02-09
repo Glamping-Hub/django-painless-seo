@@ -1,3 +1,6 @@
+# Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
+# License: BSD 3-Clause
+
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
@@ -5,7 +8,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate, get_language
 
-from simpleseo import settings
+from painlessseo import settings
 
 
 class SeoMetadata(models.Model):
