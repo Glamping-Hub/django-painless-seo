@@ -68,3 +68,8 @@ template tag like this:
 ## Notes
 
 [Why PainlessSEO does not include keywords meta tag](http://googlewebmastercentral.blogspot.in/2009/09/google-does-not-use-keywords-meta-tag.html).
+
+## Legal Stuff
+
+This software is licensed under the terms of the BSD 3-clause license. You can
+find the whole text of the license in the LICENSE file.
