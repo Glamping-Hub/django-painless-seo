@@ -20,36 +20,44 @@ The Git repository can be cloned with this command:
 
     git clone https://github.com/Glamping-Hub/django-simple-seo.git
 
-The `simpleseo` package included in the distribution should be placed on the `PYTHONPATH`. Add `simpleseo` to the `INSTALLED_APPS` in your *settings.py*. Run `syncdb` command to create the needed tables.
+The `simpleseo` package included in the distribution should be placed on the
+`PYTHONPATH`. Add `simpleseo` to the `INSTALLED_APPS` in your *settings.py*.
+Run `syncdb` command to create the needed tables.
 
 ## Settings
 
-SimpleSEO uses two configuration variables for defining the default information that will be displayed if the URL has no SEO metadata related. You have to add them to your *settings.py*:
+SimpleSEO uses two configuration variables for defining the default information
+that will be displayed if the URL has no SEO metadata related. You have to add
+them to your *settings.py*:
 
     SEO_DEFAULT_TITLE = 'Lorem ipsum title'
     SEO_DEFAULT_DESCRIPTION = 'Lorem ipsum description'
 
 ## Registering Models
 
-To create synced SEO metadata for model instances you have to define the `SEO_MODELS` variable in your *settings.py* like this:
+To create synced SEO metadata for model instances you have to define the
+`SEO_MODELS` variable in your *settings.py* like this:
 
     SEO_MODELS = (
         ('myapp', 'mymodel'),
         ('myapp', 'mymodel'),
     )
 
-After registering the models, you can add the inline form to the admin instance for each model:
+After registering the models, you can add the inline form to the admin instance
+for each model:
 
     from simpleseo.admin import SeoMetadataInline
 
     class MyModelAdmin(admin.ModelAdmin):
         inlines = [SeoMetadataInline, ]
 
-Now every time you save a model instance through the admin site the SEO metadata will be updated automatically.
+Now every time you save a model instance through the admin site the SEO
+metadata will be updated automatically.
 
 ## SEO Output
 
-As simple as loading the `seo` template library and using the `get_seo` template tag like this:
+As simple as loading the `seo` template library and using the `get_seo`
+template tag like this:
 
     {% load seo %}
 
