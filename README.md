@@ -29,21 +29,21 @@ Run `syncdb` command to create the needed tables.
 
 ## Settings
 
-PainlessSEO uses two configuration variables for defining the default information
-that will be displayed if the URL has no SEO metadata related. You have to add
-them to your *settings.py*:
+PainlessSEO uses two configuration variables in order to define the default
+information that will be displayed if the URL has no SEO metadata related. You
+have to add them to your *settings.py*:
 
     SEO_DEFAULT_TITLE = 'Lorem ipsum title'
     SEO_DEFAULT_DESCRIPTION = 'Lorem ipsum description'
 
-## Registering Models
+### Registering Models
 
 To create synced SEO metadata for model instances you have to define the
 `SEO_MODELS` variable in your *settings.py* like this:
 
     SEO_MODELS = (
         ('myapp', 'mymodel'),
-        ('myapp', 'mymodel'),
+        ('anotherapp', 'anothermodel'),
     )
 
 After registering the models, you can add the inline form to the admin instance
@@ -54,7 +54,7 @@ for each model:
     class MyModelAdmin(admin.ModelAdmin):
         inlines = [SeoMetadataInline, ]
 
-Now every time you save a model instance through the admin site the SEO
+Now every time you save a model instance through the admin site, the SEO
 metadata will be updated automatically.
 
 ## SEO Output
