@@ -1,7 +1,6 @@
 # Django PainlessSEO
 
-[![PyPI version](https://pypip.in/version/django-painless-seo/badge.svg?style=flat)](https://pypi.python.org/pypi/django-painless-seo)
-[![PyPI downloads](https://pypip.in/download/django-painless-seo/badge.svg?style=flat)](https://pypi.python.org/pypi/django-painless-seo)
+A painless way to add SEO information to your Django site.
 
 ## Features
 
