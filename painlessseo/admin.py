@@ -3,8 +3,14 @@
 
 from django.contrib import admin
 from django.contrib.contenttypes import generic
+from django.utils.safestring import mark_safe
 
+from painlessseo import settings
 from painlessseo.models import SeoMetadata, register_seo_signals
+
+
+def get_language_name(lang_code):
+    return dict(settings.SEO_LANGUAGES).get(lang_code, lang_code)
 
 
 class SeoMetadataInline(generic.GenericStackedInline):
@@ -13,8 +19,16 @@ class SeoMetadataInline(generic.GenericStackedInline):
     max_num = 0
     exclude = ('path', 'lang_code', )
 
+    fields = ('language', 'title', 'description')
+    readonly_fields = ('language', )
+
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def language(self, obj):
+        language = get_language_name(obj.lang_code)
+        return mark_safe('<strong>%s</strong>' % language.upper())
+    language.short_description = 'Language'
 
 
 class SeoMetadataAdmin(admin.ModelAdmin):
@@ -22,6 +36,14 @@ class SeoMetadataAdmin(admin.ModelAdmin):
     search_fields = ['path', ]
     list_filter = ('lang_code', )
     exclude = ('content_type', 'object_id', )
+
+    fields = ('language', 'title', 'description')
+    readonly_fields = ('language', )
+
+    def language(self, obj):
+        language = get_language_name(obj.lang_code)
+        return mark_safe('<strong>%s</strong>' % language.upper())
+    language.short_description = 'Language'
 
 
 admin.site.register(SeoMetadata, SeoMetadataAdmin)
