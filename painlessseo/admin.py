@@ -2,7 +2,12 @@
 # License: BSD 3-Clause
 
 from django.contrib import admin
-from django.contrib.contenttypes import generic
+
+try:
+    from django.contrib.contenttypes.admin import GenericStackedInline
+except:
+    from django.contrib.contenttypes.generic import GenericStackedInline
+
 from django.utils.safestring import mark_safe
 
 from painlessseo import settings
@@ -13,7 +18,7 @@ def get_language_name(lang_code):
     return dict(settings.SEO_LANGUAGES).get(lang_code, lang_code)
 
 
-class SeoMetadataInline(generic.GenericStackedInline):
+class SeoMetadataInline(GenericStackedInline):
     model = SeoMetadata
     extra = 0
     max_num = 0

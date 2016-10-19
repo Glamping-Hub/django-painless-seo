@@ -4,7 +4,6 @@
 try:
     from django.contrib.contenttypes.fields import GenericForeignKey
 except:
-    # Django versions < 1.9
     from django.contrib.contenttypes.generic import GenericForeignKey
 
 from django.contrib.contenttypes.models import ContentType    
