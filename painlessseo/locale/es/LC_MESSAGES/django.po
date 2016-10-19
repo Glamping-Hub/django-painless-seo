@@ -1,0 +1,46 @@
+# Copyright (C) 2016 Glamping Hub (https://glampinghub.com)
+# License: BSD 3-Clause
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-19 13:28+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: GH IT Department <it@glampinghub.com>\n"
+"Language-Team: Spanish <it@glampinghub.com>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: models.py:15
+msgid "Path"
+msgstr "Ruta"
+
+#: models.py:16
+msgid ""
+"This should be an absolute path, excluding the domain name. Example: '/foo/"
+"bar/'."
+msgstr ""
+"Debería ser una ruta absoluta, excluyendo el nombre de dominio. Ejemplo: "
+"'/foo/bar/'."
+
+#: models.py:17
+msgid "Language"
+msgstr "Idioma"
+
+#: models.py:20
+msgid "Title"
+msgstr "Título"
+
+#: models.py:21
+msgid "Description"
+msgstr "Descripción"
+
+#: models.py:24 models.py:25
+msgid "SEO metadata"
+msgstr "SEO metadatos"
