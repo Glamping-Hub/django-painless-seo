@@ -5,8 +5,8 @@ from django.forms.models import model_to_dict
 from django.template import Library
 from django.utils.translation import get_language
 
-from painlessseo import settings
-from painlessseo.models import SeoMetadata
+from .. import settings
+from ..models import SeoMetadata
 
 register = Library()
 

@@ -10,8 +10,8 @@ except:
 
 from django.utils.safestring import mark_safe
 
-from painlessseo import settings
-from painlessseo.models import SeoMetadata, register_seo_signals
+from . import settings
+from .models import SeoMetadata, register_seo_signals
 
 
 def get_language_name(lang_code):

@@ -9,10 +9,10 @@ except:
 from django.contrib.contenttypes.models import ContentType    
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import activate, get_language
+from django.utils.translation import ugettext_lazy as _
 
-from painlessseo import settings
+from . import settings
 
 
 class SeoMetadata(models.Model):
@@ -43,12 +43,15 @@ def update_seo(sender, instance, **kwargs):
     for lang_code, lang_name in settings.SEO_LANGUAGES:
         activate(lang_code)
         try:
-            sm = SeoMetadata.objects.get(content_type=ContentType.objects.get_for_model(instance),
-                                         object_id=instance.id, lang_code=lang_code)
+            sm = SeoMetadata.objects.get(
+                content_type=ContentType.objects.get_for_model(instance),
+                lang_code=lang_code, path=instance.get_absolute_url())
             if instance.get_absolute_url() != sm.path:
                 sm.path = instance.get_absolute_url()
         except SeoMetadata.DoesNotExist:
-            sm = SeoMetadata(lang_code=lang_code, content_object=instance, path=instance.get_absolute_url())
+            sm = SeoMetadata(
+                lang_code=lang_code, content_object=instance,
+                path=instance.get_absolute_url())
         sm.save()
     activate(active_lang)
 
@@ -63,6 +66,6 @@ def register_seo_signals():
     for app, model in settings.SEO_MODELS:
         ctype = ContentType.objects.get(app_label=app, model=model)
         if not hasattr(ctype.model_class(), 'get_absolute_url'):
-            raise ImproperlyConfigured("Needed get_absolute_url method not defined on %s.%s model." % (app, model))
+            raise ImproperlyConfigured("Needed 'get_absolute_url' method not defined on '%s.%s' model." % (app, model))
         models.signals.post_save.connect(update_seo, sender=ctype.model_class(), weak=False)
         models.signals.pre_delete.connect(delete_seo, sender=ctype.model_class(), weak=False)

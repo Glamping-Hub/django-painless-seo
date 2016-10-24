@@ -21,7 +21,7 @@ def recursive_include(directory, patterns):
 
 setup(
     name='django-painless-seo',
-    version='0.0.8',
+    version='0.0.9',
     author='Glamping Hub',
     author_email='it@glampinghub.com',
     packages=find_packages('.'),
