@@ -1,5 +1,7 @@
 # Django PainlessSEO
 
+[![Code Climate](https://codeclimate.com/github/Glamping-Hub/django-painless-seo/badges/gpa.svg)](https://codeclimate.com/github/Glamping-Hub/django-painless-seo)
+
 A painless way to add SEO information to your Django site.
 
 ## Features
