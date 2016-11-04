@@ -14,8 +14,9 @@ from . import settings
 from .models import SeoMetadata, register_seo_signals
 
 
-def get_language_name(lang_code):
-    return dict(settings.SEO_LANGUAGES).get(lang_code, lang_code)
+def get_language(obj):
+    language = dict(settings.SEO_LANGUAGES).get(obj.lang_code, obj.lang_code)
+    return mark_safe('<strong>%s</strong>' % language.upper())
 
 
 class SeoMetadataInline(GenericStackedInline):
@@ -31,8 +32,7 @@ class SeoMetadataInline(GenericStackedInline):
         return False
 
     def language(self, obj):
-        language = get_language_name(obj.lang_code)
-        return mark_safe('<strong>%s</strong>' % language.upper())
+        return get_language(obj)
     language.short_description = 'Language'
 
 
@@ -46,8 +46,7 @@ class SeoMetadataAdmin(admin.ModelAdmin):
     readonly_fields = ('language', )
 
     def language(self, obj):
-        language = get_language_name(obj.lang_code)
-        return mark_safe('<strong>%s</strong>' % language.upper())
+        return get_language(obj)
     language.short_description = 'Language'
 
 
