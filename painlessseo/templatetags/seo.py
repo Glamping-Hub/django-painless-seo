@@ -33,11 +33,17 @@ def get_seo(context, **kwargs):
     return result
 
 
+def get_seo_attr(context, attr, default):
+    title = default if attr == 'title' else ''
+    description = default if attr == 'description' else ''
+    return get_seo(context, title=title, description=description)[attr]
+
+
 @register.simple_tag(takes_context=True)
 def get_seo_title(context, default=''):
-    return get_seo(context, title=default).get('title')
+    return get_seo_attr(context, 'title', default)
 
 
 @register.simple_tag(takes_context=True)
 def get_seo_description(context, default=''):
-    return get_seo(context, description=default).get('description')
+    return get_seo_attr(context, 'description', default)
