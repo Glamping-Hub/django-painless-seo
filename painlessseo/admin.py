@@ -1,7 +1,10 @@
 # Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
 # License: BSD 3-Clause
 
+from django import forms
 from django.contrib import admin
+from django.utils.translation import ugettext as _
+import django
 
 try:
     from django.contrib.contenttypes.admin import GenericStackedInline
@@ -19,11 +22,30 @@ def get_language(obj):
     return mark_safe('<strong>%s</strong>' % language.upper())
 
 
+class SEOMetadataForm(forms.ModelForm):
+    def clean(self):
+        cleaned_data = super(SEOMetadataForm, self).clean()
+        obj = cleaned_data.get('id')
+        error_msg = _(u'This field is required')
+        for lang, fields in settings.SEO_ADMIN_FORM_REQUIRED_FIELDS.items():
+            if obj.lang_code == lang:
+                for field in fields:
+                    value = cleaned_data.get(field)
+                    if not value:
+                        if django.VERSION >= (1, 7):
+                            self.add_error(field, error_msg)
+                        else:
+                            self._errors[field] = self.error_class([error_msg])
+                            del cleaned_data[field]
+        return cleaned_data
+
+
 class SeoMetadataInline(GenericStackedInline):
-    model = SeoMetadata
-    extra = 0
-    max_num = 0
     exclude = ('path', 'lang_code', )
+    extra = 0
+    form = SEOMetadataForm
+    max_num = 0
+    model = SeoMetadata
 
     fields = ('language', 'title', 'description')
     readonly_fields = ('language', )
