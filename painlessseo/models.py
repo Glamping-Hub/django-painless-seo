@@ -45,7 +45,7 @@ def update_seo(sender, instance, **kwargs):
         try:
             sm = SeoMetadata.objects.get(
                 content_type=ContentType.objects.get_for_model(instance),
-                lang_code=lang_code, path=instance.get_absolute_url())
+                object_id=instance.id, lang_code=lang_code)
             if instance.get_absolute_url() != sm.path:
                 sm.path = instance.get_absolute_url()
         except SeoMetadata.DoesNotExist:
@@ -66,6 +66,7 @@ def register_seo_signals():
     for app, model in settings.SEO_MODELS:
         ctype = ContentType.objects.get(app_label=app, model=model)
         if not hasattr(ctype.model_class(), 'get_absolute_url'):
-            raise ImproperlyConfigured("Needed 'get_absolute_url' method not defined on '%s.%s' model." % (app, model))
+            raise ImproperlyConfigured("Needed 'get_absolute_url' method not "
+                                       "defined on '%s.%s' model." % (app, model))
         models.signals.post_save.connect(update_seo, sender=ctype.model_class(), weak=False)
         models.signals.pre_delete.connect(delete_seo, sender=ctype.model_class(), weak=False)
