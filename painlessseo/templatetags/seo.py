@@ -18,7 +18,11 @@ def single_quotes(description):
 
 @register.inclusion_tag('painlessseo/metadata.html', takes_context=True)
 def get_seo(context, **kwargs):
-    path = context['request'].path
+    if hasattr(context, 'request'):
+        request = getattr(context, 'request')
+    else:
+        request = context['request']
+    path = request.path
     lang_code = get_language()[:2]
     try:
         metadata = model_to_dict(SeoMetadata.objects.get(path=path,
