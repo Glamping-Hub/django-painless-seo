@@ -12,7 +12,8 @@ This app provides two ways of adding SEO metadata to your django site:
 - Model instances
 
 It's fully integrated with the admin site including inline forms for models.
-It also includes support for multiple languages and localized URLs.
+It also includes support for multiple languages and localized URLs, and having
+several sites.
 
 ## Requirements
 
