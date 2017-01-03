@@ -41,7 +41,8 @@ class SEOMetadataWithValidationForm(forms.ModelForm):
         obj = cleaned_data.get('id')
         for lang, fields in settings.SEO_ADMIN_FORM_REQUIRED_FIELDS.items():
             if obj.lang_code == lang:
-                cleaned_data = self.validate_required_fields(cleaned_data, fields)
+                cleaned_data = self.validate_required_fields(cleaned_data,
+                                                             fields)
         return cleaned_data
 
 
@@ -51,8 +52,8 @@ class SeoMetadataInline(GenericStackedInline):
     max_num = 0
     model = SeoMetadata
 
-    fields = ('language', 'title', 'description')
-    readonly_fields = ('language', )
+    fields = ('language', 'site', 'title', 'description')
+    readonly_fields = ('language', 'site', )
 
     def has_delete_permission(self, request, obj=None):
         return False
@@ -67,13 +68,13 @@ class SeoMetadataWithValidationInline(SeoMetadataInline):
 
 
 class SeoMetadataAdmin(admin.ModelAdmin):
-    list_display = ('path', 'lang_code', )
+    list_display = ('path', 'lang_code', 'site', )
     search_fields = ['path', ]
-    list_filter = ('lang_code', )
+    list_filter = ('lang_code', 'site', )
     exclude = ('content_type', 'object_id', )
 
-    fields = ('language', 'title', 'description')
-    readonly_fields = ('language', )
+    fields = ('language', 'site', 'title', 'description', )
+    readonly_fields = ('language', 'site', )
 
     def language(self, obj):
         return get_language(obj)

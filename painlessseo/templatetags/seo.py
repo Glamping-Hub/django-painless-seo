@@ -1,6 +1,7 @@
 # Copyright (C) 2014 Glamping Hub (https://glampinghub.com)
 # License: BSD 3-Clause
 
+from django.contrib.sites.models import Site
 from django.forms.models import model_to_dict
 from django.template import Library
 from django.utils.translation import get_language
@@ -24,9 +25,11 @@ def get_seo(context, **kwargs):
         request = context['request']
     path = request.path
     lang_code = get_language()[:2]
+    site = Site.objects.get_current()
     try:
         metadata = model_to_dict(SeoMetadata.objects.get(path=path,
-                                                         lang_code=lang_code))
+                                                         lang_code=lang_code,
+                                                         site=site))
     except SeoMetadata.DoesNotExist:
         metadata = {}
     result = {}

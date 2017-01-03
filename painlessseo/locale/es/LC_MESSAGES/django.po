@@ -44,3 +44,7 @@ msgstr "Descripción"
 #: models.py:24 models.py:25
 msgid "SEO metadata"
 msgstr "SEO metadatos"
+
+#: models.py:45
+msgid "Site"
+msgstr "Sitio"
